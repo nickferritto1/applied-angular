@@ -7,17 +7,30 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   template: `
-     <ul class="menu menu-horizontal px-1">
-      @for(link of listOfLinks(); track link) {
-        <li><a [routerLink]="link.link">{{link.label}}</a>
-      
-      }
+   <ul class="menu menu-horizontal px-1">
+    
+  
+
+   @for(link of listOfLinks(); track link) {
+
+    <!-- @if(link.children) {
+      <app-main-menu-child-links [link]="link" />
+    } @else {
+      <app-main-menu-link [link]="link" />
+    } -->
+    <!-- If the link has children, have another component display that 
+     if it doesn't have another component that is responsible for display it -->
+
+   
+    }
+
+   
       <!-- <li><a>Item 1</a></li>
       <li>
         <details>
           <summary>Parent</summary>
           <ul class="p-2">
-            <li><a>Submenu 1</a></li>
+            <li><a>More Tacos</a></li>
             <li><a>Submenu 2</a></li>
           </ul>
         </details>
@@ -28,5 +41,9 @@ import { RouterLink } from '@angular/router';
   styles: ``
 })
 export class MainMenuComponent {
+  
+
   listOfLinks = input.required<NavbarLinks>();
+
+
 }

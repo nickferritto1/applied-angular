@@ -9,36 +9,37 @@ import { NavbarLinks } from './models';
   standalone: true,
   imports: [SideMenuComponent, UserMenuComponent, MainMenuComponent],
   template: `
-    <div class="navbar bg-base-100">
+   <div class="navbar bg-base-100">
   <div class="navbar-start">
-    <app-side-menu/>
+  <app-side-menu />
     <a class="btn btn-ghost text-xl">Help Desk</a>
   </div>
   <div class="navbar-center hidden lg:flex">
-    <app-main-menu [listOfLinks]="links()"/>
+    <app-main-menu [listOfLinks]="topNavLinks()" />
   </div>
   <div class="navbar-end">
-    <app-user-menu/>
+    <app-user-menu />
   </div>
 </div>
   `,
   styles: ``
 })
 export class NavBarComponent {
-  links = signal<NavbarLinks>([
-    {
-      label: 'Students',
-      link: 'students'
-    },
-    {
-      label: 'Taco Street',
-      link: 'ts.com',
-      children: [
-        {
-          label: 'Locations',
-          link: 'locations.com'
-        }
-      ]
-    }
-  ]);
+ 
+ topNavLinks = signal<NavbarLinks>([
+  {
+    label: 'Students',
+    link: '/students'
+  },
+  {
+    label: 'Taco Street',
+    link: 'ts.com',
+    children: [
+      {
+        label: 'Locations',
+        link: 'locations.com'
+      }
+    ]
+  }
+ ]); 
 }
