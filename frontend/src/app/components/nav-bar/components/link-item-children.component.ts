@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { NavbarLink } from '../models';
+import { LinkItemComponent } from "./link-item.component";
 
 @Component({
     selector: 'app-link-item-children',
     standalone: true,
-    imports: [],
+    imports: [LinkItemComponent],
     template: `
          <li>
         <details>
-          <summary>Parent</summary>
+          <summary>{{link().label}}</summary>
           <ul class="p-2">
-            <li><a>More Tacos</a></li>
-            <li><a>Submenu 2</a></li>
+          @for (child of link().children; track $index) {
+            <app-link-item [linkInput] = "child"/>
+          }
           </ul>
         </details>
       </li>
@@ -18,5 +21,5 @@ import { Component } from '@angular/core';
     styles: ``
 })
 export class LinkItemChildrenComponent {
-
+    link = input.required<NavbarLink>();
 }
